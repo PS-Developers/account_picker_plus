@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.account.picker.account_picker_plus">
+
+    <uses-permission
+        android:name="android.permission.GET_ACCOUNTS"
+        android:maxSdkVersion="22" />
+</manifest>
