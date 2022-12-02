@@ -9,7 +9,7 @@ class AccountPickerPlus {
   }
 
   static Future<List<Object?>> emailHint() async {
-    final List<String> email = await _channel.invokeMethod('requestEmailHint');
+    final List<dynamic> email = await _channel.invokeMethod('requestEmailHint');
     return email;
   }
 }
