@@ -33,14 +33,16 @@ class AccountPickerPlusPlugin : FlutterPlugin, MethodCallHandler,
 
     override fun onMethodCall(call: MethodCall, result: Result) {
         response = result
-        if (call.method == "requestPhoneHint") {
-            Log.e("phone", "loaded")
-            getMobileNo(result)
-        } else if (call.method == "requestEmailHint") {
-            Log.e("email", "loaded")
-            getEmailId(result)
-        } else {
-            result.notImplemented()
+        when (call.method) {
+            "requestPhoneHint" -> {
+                getMobileNo(result)
+            }
+            "requestEmailHint" -> {
+                getEmailId(result)
+            }
+            else -> {
+                result.notImplemented()
+            }
         }
     }
 
@@ -54,7 +56,7 @@ class AccountPickerPlusPlugin : FlutterPlugin, MethodCallHandler,
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
-        TODO("Not yet implemented")
+
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
@@ -63,7 +65,7 @@ class AccountPickerPlusPlugin : FlutterPlugin, MethodCallHandler,
     }
 
     override fun onDetachedFromActivity() {
-        TODO("Not yet implemented")
+
     }
 
     private fun getEmailId(result1: Result) {
@@ -89,14 +91,13 @@ class AccountPickerPlusPlugin : FlutterPlugin, MethodCallHandler,
                 )
             }
             .addOnFailureListener {
-                it.message?.let(fun(it1: String) {
+                it.message?.let(fun(_: String) {
                     result1.success("")
                 })
             }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
-        Log.d("onActivityResult", "Data")
         if (data != null) {
             if (requestCode == 1010101) {
                 val phoneNumber = Identity.getSignInClient(activity)
