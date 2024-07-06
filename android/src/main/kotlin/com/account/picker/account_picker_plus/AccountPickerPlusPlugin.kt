@@ -92,7 +92,7 @@ class AccountPickerPlusPlugin : FlutterPlugin, MethodCallHandler,
             }
             .addOnFailureListener {
                 it.message?.let(fun(_: String) {
-                    result1.success("")
+                    result1.success(it.localizedMessage)
                 })
             }
     }
