@@ -1,6 +1,9 @@
+## 1.0.0
+* TODO: Dependency Updated.
+
 ## 0.0.4
 * TODO: README Updated
-* 
+
 ## 0.0.3
 * TODO: README Updated
 

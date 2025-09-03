@@ -98,12 +98,18 @@ class AccountPickerPlusPlugin : FlutterPlugin, MethodCallHandler,
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
-        if (data != null) {
-            if (requestCode == 1010101) {
-                val phoneNumber = Identity.getSignInClient(activity)
-                    .getPhoneNumberFromIntent(data)
-                Log.d("phone ", phoneNumber)
-                response.success(phoneNumber)
+        if (requestCode == 1010101) {
+            if (data != null && resultCode == android.app.Activity.RESULT_OK) {
+                try {
+                    val phoneNumber = Identity.getSignInClient(activity)
+                        .getPhoneNumberFromIntent(data)
+                    Log.d("phone ", phoneNumber)
+                    response.success(phoneNumber)
+                } catch (e: Exception) {
+                    response.success("")
+                }
+            } else {
+                response.success("")
             }
         }
         return true
